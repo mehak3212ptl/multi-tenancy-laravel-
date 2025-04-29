@@ -12,27 +12,27 @@ use App\Http\Controllers\App\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::get('register', [RegisteredUserController::class, 'create'])
-                ->name('register');
+    Route::get('tenantregister', [RegisteredUserController::class, 'create'])
+                ->name('tenantregister');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::post('tenantregister', [RegisteredUserController::class, 'store']);
 
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])
-                ->name('login');
+    Route::get('tenantlogin', [AuthenticatedSessionController::class, 'create'])
+                ->name('tenantlogin');
 
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('tenantlogin', [AuthenticatedSessionController::class, 'store']);
 
-    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-                ->name('password.request');
+    Route::get('tenantforgot-password', [PasswordResetLinkController::class, 'create'])
+                ->name('tenantpassword.request');
 
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-                ->name('password.email');
+    Route::post('tenantforgot-password', [PasswordResetLinkController::class, 'store'])
+                ->name('tenantpassword.email');
 
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-                ->name('password.reset');
+    Route::get('tenantreset-password/{token}', [NewPasswordController::class, 'create'])
+                ->name('tenantpassword.reset');
 
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-                ->name('password.store');
+    Route::post('tenantreset-password', [NewPasswordController::class, 'store'])
+                ->name('tenantpassword.store');
 });
 
 Route::middleware('auth')->group(function () {
