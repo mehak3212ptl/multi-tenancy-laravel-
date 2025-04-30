@@ -16,11 +16,15 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', function () {
-    return view('welcome');   
+    return view('welcome');
+    // return view('subscription');
 });
 
+Route::resource('tanent',TenantController::class)->middleware(['auth', 'verified']);
+Route::post('tanent/store',[TenantController::class,'store'])->middleware(['auth', 'verified'])->name('tenant.store');
+
 // Route::get('/dashboard', function () {
-//     return view('dashboard');
+//     return view('subscription');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -30,7 +34,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-Route::resource('tanent',TenantController::class)->middleware(['auth', 'verified']);
-Route::post('tanent/store',[TenantController::class,'store'])->middleware(['auth', 'verified'])->name('tenant.store');
-

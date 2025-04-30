@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\app;
+use App\Http\Controllers\Controller;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
 
-class TenantController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $tenants=Tenant::with('domains')->get();
-        // dd($tenants);
-        return view('tenancy.index',compact('tenants'));
+    
+        return view('app.users.index');
     }
 
     /**

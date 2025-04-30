@@ -1,4 +1,4 @@
-<x-tenant-guest-layout>
+<x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -7,14 +7,14 @@
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label for="email" :value="('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="('Password')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
@@ -44,4 +44,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-tenant-guest-layout>
+</x-guest-layout>

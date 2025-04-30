@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\app\UserController;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
@@ -25,15 +27,26 @@ Route::middleware([
     'tenant.active',
 ])->group(function () {
     Route::get('/', function () {
-        return view('app.welcome');
+        return view('app.userpage');
+        
     });
 
-    
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+   Route::get('login',function(){
+    return view('app.auth.login');
+   });
 
-require __DIR__.'/tenant-auth.php'; 
+//    Route::get('user',function(){
+//     return view('app.users.index');
+//    });
+
+   Route::resource('user',UserController::class)->middleware(['auth', 'verified']);
+   
+
+
+   require __DIR__.'/user-auth.php';
+
+   
+   
+    
+
 });
